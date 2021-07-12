@@ -16,9 +16,14 @@ namespace API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
+        //  config _config
+        private readonly IConfiguration _config;
+        
+        public Startup(IConfiguration config)
+        {   
+            // set connectionString
+            _config = config;
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -30,8 +35,9 @@ namespace API
             services.AddControllers();
             //  create connection String
             services.AddDbContext<DataContext>(options => {
-                options.UseSqlite("connection String");
-            })
+                // connect with defaultConnectionString from appSettings.Development
+                options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
