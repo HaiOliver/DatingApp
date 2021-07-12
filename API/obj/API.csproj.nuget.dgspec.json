@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Self-Study\\DatingApp\\API\\API.csproj": {}
+    "C:\\Self-Study\\DatingApp\\API\\API.csproj": {}
   },
   "projects": {
-    "c:\\Self-Study\\DatingApp\\API\\API.csproj": {
+    "C:\\Self-Study\\DatingApp\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Self-Study\\DatingApp\\API\\API.csproj",
+        "projectUniqueName": "C:\\Self-Study\\DatingApp\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "c:\\Self-Study\\DatingApp\\API\\API.csproj",
+        "projectPath": "C:\\Self-Study\\DatingApp\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Oliver.Huynh\\.nuget\\packages\\",
-        "outputPath": "c:\\Self-Study\\DatingApp\\API\\obj\\",
+        "outputPath": "C:\\Self-Study\\DatingApp\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -24,6 +24,7 @@
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -42,9 +43,41 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0-preview.5.21301.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[6.0.0-preview.5.21301.9, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[5.0.7, )"
+              "version": "[6.0.0-preview.5.21301.9, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0-preview.5.21301.5, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[6.0.0-preview.5.21301.5, )"
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0-preview.5.21301.5, )"
+            },
+            "Microsoft.Extensions.Logging.Configuration": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.EventSource": {
+              "target": "Package",
+              "version": "[5.0.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
