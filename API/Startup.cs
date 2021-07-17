@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using API.Data;
+using API.Extensions;
+using API.Interfaces;
+using API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace API
@@ -33,14 +39,12 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container => dependency injection
         public void ConfigureServices(IServiceCollection services)
         {
-
+            // !! Need register for JWT -> Extension folder -> ApplicationServiceExtensions
+            services.AddApplicationServices(_config);
             services.AddControllers();
-            //  create connection String
-            services.AddDbContext<DataContext>(options => {
-                // connect with defaultConnectionString from appSettings.Development
-                options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
-            });
             services.AddCors();
+            // !! Handle JWT token  -> Extension folder -> ApplicationServiceExtensions
+            services.AddIdentityServices(_config);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
@@ -64,6 +68,8 @@ namespace API
             // setting Cors -> order important
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
+            // !! add middleware for authentication -> order -> important
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -71,5 +77,7 @@ namespace API
                 endpoints.MapControllers();
             });
         }
+
+
     }
 }
