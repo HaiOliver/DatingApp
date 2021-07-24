@@ -18,6 +18,10 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" (click)="logout()">Log out</a>
           </li>
         </ng-container>
+        <li class="nav-item">
+          <a class="nav-link " href="#" tabindex="-1" aria-disabled="true" routerLink="/errors" routerLinkActive='active'>Errors</a>
+        </li>
+
       </ul>
 
       <div class="dropdown" *ngIf="accountService.currentUser$ | async as user" dropdown >

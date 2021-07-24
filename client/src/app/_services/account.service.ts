@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../_models/user';
+import { environment } from './../../environments/environment';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { User } from '../_models/user';
 })
 // !!! service in angular -> singeton -> keep, not destroy like component
 export class AccountService {
-  baseUrl = "https://localhost:5001/api/";
+  baseUrl = environment.apiUrl;
 
   // ! create observable for consistent
   private currentUserSource = new ReplaySubject<User>(1);

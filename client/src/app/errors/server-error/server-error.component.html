@@ -1,0 +1,8 @@
+<h2> Internal Serve Error </h2>
+<ng-container *ngIf="error">
+  <h3 class="text-danger">Error: {{error.message}}</h3>
+  <h4>Error Detail below:</h4>
+  <code class="mt-5" style="background: white;">
+    {{error.details}}
+  </code>
+</ng-container>

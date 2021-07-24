@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ToastrModule } from 'ngx-toastr';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { NavComponent } from './nav/nav.component'
 import { FormsModule } from '@angular/forms';
@@ -15,31 +15,40 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SharedModule } from './_module/shared.module';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 @NgModule({
   declarations: [
     AppComponent,
-    // !! nav component added automatically
+    // !! ng g c [name] --> component added automatically here
     NavComponent,
     HomeComponent,
     RegisterComponent,
     MemberListComponent,
     MemberDetailComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    TestErrorsComponent,
+    NotFoundComponent,
+    ServerErrorComponent
   ],
   imports: [
-    // need to render on browser
+    // !! import here -> use everywhere, modify angular.json -> css style
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     // bootstrap add Brownser Amination
     BrowserAnimationsModule,
-    // !! import here -> use everywhere, modify angular.json -> css style
     FormsModule,
     // !! use ShareModule in Share folder -> clean module app
     SharedModule
   ],
-  providers: [],
+  // !! add error interceptors -> custom interceptor
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

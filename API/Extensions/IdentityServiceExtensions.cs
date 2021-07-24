@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace API.Extensions
 {
+    // !! using static class -> all function can access functions of the class inside Extensions folder
     public static class IdentityServiceExtensions
     {
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config){
@@ -17,7 +18,7 @@ namespace API.Extensions
                             ValidateIssuerSigningKey = true,
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["OliverKey"])),
                             ValidateIssuer = false,
-                            ValidateAudience = false 
+                            ValidateAudience = false
                     }
 
                     );
