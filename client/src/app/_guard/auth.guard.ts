@@ -11,7 +11,6 @@ import { User } from './../_models/user';
 })
 export class AuthGuard implements CanActivate {
   constructor(private accountService:AccountService, private toastr: ToastrService){
-
   }
   canActivate(): Observable<boolean > {
     return this.accountService.currentUser$.pipe(

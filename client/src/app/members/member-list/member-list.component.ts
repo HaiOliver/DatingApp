@@ -18,7 +18,7 @@ export class MemberListComponent implements OnInit {
   loadMember(){
     this.memberService.getMembers().subscribe(members => {
       this.members = members;
-      console.log("🚀 ~ file: member-list.component.ts ~ line 20 ~ MemberListComponent ~ this.memberService.getMembers ~ members", members)
+      console.log("🚀 ~ file: member-list.component.ts ~ line 20 ~ MemberListComponent ~ this.memberService.getMembers ~ members", this.members)
 
 
     })

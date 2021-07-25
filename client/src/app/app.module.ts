@@ -19,6 +19,8 @@ import { TestErrorsComponent } from './errors/test-errors/test-errors.component'
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { MemberCardComponent } from './member-card/member-card.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     MessagesComponent,
     TestErrorsComponent,
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    MemberCardComponent
   ],
   imports: [
     // !! import here -> use everywhere, modify angular.json -> css style
@@ -45,9 +48,12 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     // !! use ShareModule in Share folder -> clean module app
     SharedModule
   ],
-  // !! add error interceptors -> custom interceptor
+
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
+     // !! add error interceptors -> create custom error check
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true},
+    // !! add jwt interceptors -> inject jwt -> every request to back end
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]
 })
